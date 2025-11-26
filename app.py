@@ -160,7 +160,11 @@ def make_synthetic_text(num_lines: int, vocab_size: int = 100) -> str:
 st.set_page_config(page_title="MapReduce Playground", layout="wide")
 
 st.title("MapReduce Simulation")
-st.caption("An interactive MapReduce sandbox where you can literally “see” the Map → Shuffle → Reduce pipeline happen. Upload your own text, generate synthetic datasets, or use built-in examples. Tune the number of simulated workers and watch how data flows, reorganizes, and aggregates across the system.")
+st.caption(
+    "An interactive MapReduce sandbox where you can literally “see” the Map → Shuffle → Reduce pipeline happen. "
+    "Upload your own text, generate synthetic datasets, or use built-in examples. "
+    "Tune the number of simulated workers and watch how data flows, reorganizes, and aggregates across the system."
+)
 
 # ---------------- Sidebar: Input selection ----------------
 st.sidebar.header("Input Data")
@@ -206,16 +210,30 @@ num_workers = st.sidebar.slider("Number of simulated workers (single run)", 1, 6
 top_n = st.sidebar.slider("Top-N words to show", 5, 50, 20)
 verbose_logs = st.sidebar.checkbox("Verbose worker logs", value=False)
 
+st.sidebar.caption(
+    "Created by [Alfyn](https://jaronchai.com). "
+    "Contribute to the project on [Github](https://github.com/jarondlk/map-reduce-sim)! "
+    "Reference: [MapReduce (Dean & Ghemawat, 2004)](https://storage.googleapis.com/gweb-research2023-media/pubtools/4449.pdf)."
+)
+
 # ---------------- Tabs ----------------
 tab_single, tab_scaling = st.tabs(["Single Run (with visuals)", "Scaling Experiment"])
 
-st.sidebar.caption("Created by [Alfyn](https://jaronchai.com). Contribute to the project on [Github](https://github.com/jarondlk/map-reduce-sim)! Reference: [MapReduce (Dean & Ghemawat, 2004)](https://storage.googleapis.com/gweb-research2023-media/pubtools/4449.pdf).")
 
 # =====================================================
 # Tab 1: Single Run with Visualizations
 # =====================================================
 with tab_single:
     st.subheader("Single Run: Baseline vs MapReduce")
+
+    # Run / Reset buttons (stacked)
+    run_single = st.button("Run single experiment")
+    reset_single = st.button("Reset experiment")
+
+    if reset_single:
+        if "single_results" in st.session_state:
+            del st.session_state["single_results"]
+        st.rerun()
 
     # Pipeline diagram at top
     st.markdown("### MapReduce Pipeline")
@@ -237,7 +255,7 @@ with tab_single:
     """
     st.graphviz_chart(pipeline_diagram)
 
-    run_single = st.button("Run single experiment")
+    st.markdown("---")
 
     if run_single:
         with st.spinner("Running baseline and MapReduce..."):
@@ -298,7 +316,9 @@ with tab_single:
         worker_kv_rows = []
         for wid, wc in enumerate(worker_key_counts):
             total_kv = sum(wc.values())
-            worker_kv_rows.append({"worker": f"Worker {wid}", "kv_pairs": total_kv, "distinct_keys": len(wc)})
+            worker_kv_rows.append(
+                {"worker": f"Worker {wid}", "kv_pairs": total_kv, "distinct_keys": len(wc)}
+            )
 
         df_map_vis = pd.DataFrame(worker_kv_rows)
         c1, c2 = st.columns(2)
