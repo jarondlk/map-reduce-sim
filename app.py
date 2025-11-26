@@ -209,6 +209,7 @@ verbose_logs = st.sidebar.checkbox("Verbose worker logs", value=False)
 tab_single, tab_scaling = st.tabs(["Single Run (with visuals)", "Scaling Experiment"])
 
 st.sidebar.caption("Adjust workers, run experiments, and **see** Map → Shuffle → Reduce in action. Created by Alfyn")
+st.sidebar.caption("Contribute to the project further here: https://github.com/jarondlk/map-reduce-sim")
 
 
 # =====================================================
