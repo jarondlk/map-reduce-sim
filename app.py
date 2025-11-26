@@ -381,7 +381,7 @@ with tab_single:
         # ---------------- Logs ----------------
         if verbose_logs:
             st.markdown("---")
-            with st.expander("📄 Worker logs"):
+            with st.expander("Worker logs"):
                 st.text(logs)
 
 
