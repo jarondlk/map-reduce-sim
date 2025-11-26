@@ -209,8 +209,7 @@ verbose_logs = st.sidebar.checkbox("Verbose worker logs", value=False)
 # ---------------- Tabs ----------------
 tab_single, tab_scaling = st.tabs(["Single Run (with visuals)", "Scaling Experiment"])
 
-st.sidebar.caption("Original concept can be found here: https://storage.googleapis.com/gweb-research2023-media/pubtools/4449.pdf")
-st.sidebar.caption("Created by Alfyn. Contribute to the project: https://github.com/jarondlk/map-reduce-sim")
+st.sidebar.caption("Created by [Alfyn](https://jaronchai.com). Contribute to the project on [Github](https://github.com/jarondlk/map-reduce-sim)! Reference: [MapReduce (Dean & Ghemawat, 2004)](https://storage.googleapis.com/gweb-research2023-media/pubtools/4449.pdf).")
 
 # =====================================================
 # Tab 1: Single Run with Visualizations
