@@ -164,6 +164,7 @@ st.caption("An interactive MapReduce sandbox where you can literally “see” t
 
 # ---------------- Sidebar: Input selection ----------------
 st.sidebar.header("Input Data")
+st.sidebar.caption("Adjust workers, run experiments, and **see** Map → Shuffle → Reduce in action.")
 
 mode = st.sidebar.radio(
     "Choose input source",
@@ -208,8 +209,7 @@ verbose_logs = st.sidebar.checkbox("Verbose worker logs", value=False)
 # ---------------- Tabs ----------------
 tab_single, tab_scaling = st.tabs(["Single Run (with visuals)", "Scaling Experiment"])
 
-st.sidebar.caption("Adjust workers, run experiments, and **see** Map → Shuffle → Reduce in action.")
-st.sidebar.caption("Original concept, programming model and the associated implementation can be found here: https://storage.googleapis.com/gweb-research2023-media/pubtools/4449.pdf")
+st.sidebar.caption("Original concept can be found here: https://storage.googleapis.com/gweb-research2023-media/pubtools/4449.pdf")
 st.sidebar.caption("Created by Alfyn. Contribute to the project: https://github.com/jarondlk/map-reduce-sim")
 
 # =====================================================
